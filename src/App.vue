@@ -27,13 +27,8 @@ import PackageList from './views/PackageList.vue';
 
 export default {
   name: 'App',
-
   components: {
     PackageList,
-  },
-
-  data: () => ({
-    //
-  }),
+  }
 };
 </script>
