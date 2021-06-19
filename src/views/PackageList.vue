@@ -2,12 +2,15 @@
   <v-container>
     <AppSearchBar />
 
-    <AppTable :items="allPackages" />
+    <AppTable 
+      :items="allPackages"
+      @viewItem="setCurrentPackageId"
+    />
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import AppSearchBar from '../components/AppSearchBar.vue'
 import AppTable from '../components/AppTable.vue'
 
@@ -16,7 +19,8 @@ export default {
     AppSearchBar,
     AppTable
   },
-  computed: mapGetters(['allPackages'])
+  computed: mapGetters(['allPackages']),
+  methods: mapActions(['setCurrentPackageId'])
 }
 </script>
 
