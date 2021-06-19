@@ -3,20 +3,27 @@
     label="Search"
     prepend-icon="mdi-magnify"
     hide-details="auto"
-    @input="onSearch"
+    v-model.trim="searchString"
     clearable
   ></v-text-field>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  methods: {
-    onSearch(searchString) {
-      searchString = searchString ? searchString.trim() : searchString
-      if (searchString) {
-        this.$emit('search', searchString)
+  computed: {
+    searchString: {
+      get() {
+        return this.$store.getters.searchString
+      },
+      set(searchString) {
+        this.search(searchString )
       }
     }
+  },
+  methods: {
+    ...mapActions(['search'])
   }
 }
 </script>
