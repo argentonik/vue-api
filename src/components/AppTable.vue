@@ -48,7 +48,6 @@ export default {
       headers: [ 
         { text: 'Name', value: 'name' },
         { text: 'Description', value: 'description', width: '40%' },
-        { text: 'Author', value: 'author.name' },
         { text: 'Version', value: 'version' },
         { text: 'View', value: 'view', sortable: false },
       ]
