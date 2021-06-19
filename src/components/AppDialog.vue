@@ -2,15 +2,34 @@
   <v-dialog v-model="isShow" max-width="500px" v-if="isShow">
     <v-card>
       <v-card-title class="text-h5">Detail info</v-card-title>
-      <v-card-text>
-        <p>Name: <span class="text--primary">{{ currentPackage.name }}</span></p>
-        <p>Description: <span class="text--primary">{{ currentPackage.description }}</span></p>
-        <p>Keywords: 
-          <v-chip class="mr-2 mt-1" v-for="keyword in currentPackage.keywords" :key="keyword">
+
+      <v-card-text v-if="loading">
+        <v-container>
+          <v-row justify="center">
+            <AppSpinner />
+          </v-row>
+        </v-container>
+      </v-card-text>
+
+      <v-card-text v-else>
+        <div>Name: <span class="text--primary">{{ currentPackage.name }}</span></div>
+        <div>Version: <span class="text--primary">{{ currentPackage.version }}</span></div>
+        <div>Description: <span class="text--primary">{{ currentPackage.description }}</span></div>
+        <div v-if="currentPackage.keywords">
+          Keywords: 
+          <v-chip class="mr-2 mt-1" v-for="keyword in currentPackage.keywords.slice(0, 5)" :key="keyword">
             {{ keyword }}
           </v-chip>
-        </p>
-        <p>Publisher: <span class="text--primary">{{ currentPackage.publisher.email }}</span></p>
+        </div>
+        <div>Publisher: <span class="text--primary">{{ currentPackage.publisher.email }}</span></div>
+
+        <div v-if="currentPackage.details">
+          <div>Current package version usage stats for month: <span class="text--primary">{{ currentPackage.details.stats }}</span></div>
+          <div class="details">
+            <div v-html="currentPackage.details.badge"></div>
+            <div v-html="currentPackage.details.rank"></div>
+          </div>
+        </div>
       </v-card-text>
 
       <v-card-actions>
@@ -24,8 +43,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import AppSpinner from './AppSpinner.vue'
 
 export default {
+  components: {
+    AppSpinner,
+  },
   methods: {
     close() {
       this.setCurrentPackageId(null)
@@ -43,11 +66,13 @@ export default {
         }
       }
     },
-    ...mapGetters(['currentPackageId', 'currentPackage'])
+    ...mapGetters(['currentPackageId', 'currentPackage', 'loading'])
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .details {
+    margin-top: 1rem;
+  }
 </style>

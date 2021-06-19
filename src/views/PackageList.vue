@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <AppSearchBar />
+    <AppSearchBar class="search-panel" />
 
     <AppTable 
       :items="allPackages"
@@ -24,6 +24,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .search-panel {
+    margin-bottom: 1rem;
+  }
 </style>

@@ -1,3 +1,7 @@
+const loading = (state) => {
+  return state.loading
+}
+
 const searchString = (state) => {
   return state.searchString
 }
@@ -15,6 +19,7 @@ const currentPackage = (state) => {
 }
 
 export default {
+  loading,
   searchString,
   allPackages,
   currentPackageId,

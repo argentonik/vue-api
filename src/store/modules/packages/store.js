@@ -4,6 +4,7 @@ import getters from './getters';
 
 const getDefaultState = () => {
   return {
+    loading: false,
     searchString: '',
     packages: [],
     currentPackageId: null,
