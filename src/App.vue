@@ -16,7 +16,23 @@
       <v-col
         class="text-right"
       >
+        <v-tooltip top>
+          <template v-slot:activator="{ on: tooltip }">
+            <a 
+              href="https://github.com/argentonik/vue-api" 
+              target="_blank" 
+              class="github-link" 
+              v-on="{ ...tooltip }"
+            >
+              <v-icon size="32px" color="black">
+                mdi-github
+              </v-icon>
+            </a>
+          </template>
+          <span>Github</span>
+        </v-tooltip>
         Author: Marina Parkhomenko
+
       </v-col>
     </v-footer>
   </v-app>
@@ -32,3 +48,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .github-link {
+    text-decoration: none;
+  }
+</style>

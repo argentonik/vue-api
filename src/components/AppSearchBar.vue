@@ -4,6 +4,7 @@
     prepend-icon="mdi-magnify"
     hide-details="auto"
     v-model.trim="searchString"
+    maxlength="64"
     clearable
   ></v-text-field>
 </template>
